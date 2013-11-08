@@ -1,0 +1,21 @@
+CACHE MANIFEST
+#v1.2
+
+CACHE:
+index.html
+game.css
+game.html
+game.js
+question_picker.js
+//code.jquery.com/jquery-1.10.1.min.js
+//code.highcharts.com/highcharts.js
+//www.google-analytics.com/analytics.js
+questions.js
+
+# / is wildcard for all pages' fallback to be displayed if the user goes offline
+FALLBACK:
+/ index.html
+
+# Resources that require the user to be online
+NETWORK:
+*
