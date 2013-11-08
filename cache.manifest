@@ -12,10 +12,6 @@ question_picker.js
 //www.google-analytics.com/analytics.js
 questions.js
 
-# / is wildcard for all pages' fallback to be displayed if the user goes offline
-FALLBACK:
-/ index.html
-
 # Resources that require the user to be online
 NETWORK:
 *
