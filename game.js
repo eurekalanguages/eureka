@@ -1,4 +1,4 @@
-var gameController = function(data, baseDirectory, maxquestions) {
+var gameController = function(data, baseDirectory, maxquestions, ga) {
 "use strict";
 
 var gameboard = document.getElementById("gameboard"),
@@ -20,8 +20,6 @@ var score = 0,
 	timeout = null,
 	histogram = [];
 
-this.guess = "";
-
 this.speechReady = function(audioTag) {
 	var i = multiplechoice.elements.length;
 	while (i--) {
@@ -38,6 +36,7 @@ this.countdown = function() {
 	if (timer === 0) {
 		displayResult("<b class='red'>Too slow!</b> I said <i>&lsquo;" + qn.answer + "&rsquo;</i> in " + qn.language);
 		setTimeout('game.nextQuestion()', 3000);
+		ga("send", "event", qn.language, 'too-slow', qn.answer, 0);
 	}
 	else {
 		timeout = setTimeout('game.countdown()', 1000);
@@ -57,6 +56,7 @@ this.nextQuestion = function() {
 	var i = multiplechoice.elements.length;
 	while (i--) {
 		multiplechoice.elements[i].innerHTML = qn.choices[i];
+		multiplechoice.elements[i].className = "";
 	}
 	if (histogram[qn.language] === undefined) {
 		histogram[qn.language] = [0, 0];
@@ -67,15 +67,19 @@ this.nextQuestion = function() {
 	errorboard.style.opacity = 0;
 };
 
-this.checkAnswer = function() {
+this.checkAnswer = function(guess) {
 	clearTimeout(timeout);
-	if (qn.answer == this.guess) {
+	if (qn.answer == guess.innerHTML) {
+		guess.className = "green";
 		histogram[qn.language][0]++;
 		scoreboard.innerHTML = String(score += timer);
 		displayResult("<b class='green'>Correct!</b> That was " + qn.language);
+		ga("send", "event", qn.language, 'correct', qn.answer, timer);
 	}
 	else {
+		guess.className = "red";
 		displayResult("<b class='red'>No!</b> I said <i>&lsquo;" + qn.answer + "&rsquo;</i> in " + qn.language);
+		ga("send", "event", qn.language, 'incorrect', qn.answer, 0);
 	}
 	setTimeout('game.nextQuestion()', 3000);
 };
@@ -84,6 +88,15 @@ this.playOn = function() {
 	maxquestions += 10;
 	this.nextQuestion();
 };
+
+this.fbShare = function() {
+	var url = "http://rfinean.github.io/Eureka/";
+	var title = "Take the Eureka Languages Challenge yourself! I scored " + score + "points in a " + question + "question game.";
+	ga('send', 'social', 'facebook', 'share', title);
+	return !window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title),
+		'sharer', 'toolbar=0,status=0,width=626,height=436');
+};
+
 
 function pickRandomProperty(obj) {
 	var keys = [];
@@ -146,7 +159,6 @@ function displayResult(message){
 	}
 	errorboard.innerHTML = message;
 	errorboard.style.opacity = 1;
-	// TODO: highlight correct answer in green
 }
 
 function gameResults(){
@@ -203,5 +215,5 @@ function drawChart(categs, lowerSeries, upperSeries) {
 
 };
 
-var game = new gameController(data, baseDirectory, maxquestions);
+var game = new gameController(data, baseDirectory, maxquestions, ga);
 game.nextQuestion();

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html manifest="cache.manifest">
+<html manifest="manifest.appcache">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta charset="UTF-8">
@@ -27,20 +27,20 @@
 				<span id="error"></span>
 				<span id="timer">10</span>
 			</div>
-			<form action="#" id="multiplechoice" onsubmit="game.checkAnswer(); return false;">
-				<button name="guess1" onclick="game.guess = this.innerHTML;" value="1">?</button>
-				<button name="guess2" onclick="game.guess = this.innerHTML;" value="2">?</button>
-				<button name="guess3" onclick="game.guess = this.innerHTML;" value="3">?</button>
-				<button name="guess4" onclick="game.guess = this.innerHTML;" value="4">?</button>
+			<form action="#" id="multiplechoice" onsubmit="return false;">
+				<button name="guess1" onclick="game.checkAnswer(this);" value="1">?</button>
+				<button name="guess2" onclick="game.checkAnswer(this);" value="2">?</button>
+				<button name="guess3" onclick="game.checkAnswer(this);" value="3">?</button>
+				<button name="guess4" onclick="game.checkAnswer(this);" value="4">?</button>
 			</form>
 		</div>
 		<div data-role="content" class="gameover">
 			<h3 id="results">Game over</h3>
-			<script>function fbs_click() {u="http://bit.ly/eurekalanguages";t="Take the Eureka Languages Challenge yourself!";window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script>
 			<p>
-				<a rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fbit.ly%2Feurekalanguages" class="fb_share_button" onclick="return fbs_click()" target="_blank">
+				<a rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fbit.ly%2Feurekalanguages" class="fb_share_button" onclick="return game.fbShare();" target="_blank">
 					&nbsp;Share on <b>facebook</b>
-				<img src="http://www.usphs.gov/images/home/facebook-logo.png" width="40px" /></a>
+					<img src="http://www.usphs.gov/images/home/facebook-logo.png" width="40px" />
+				</a>
 			</p>
 			<button onclick="game.playOn()" class="green">Continue playing</button>
 			<button onclick="window.location.href='index.html'" class="red">New game</button>
@@ -51,15 +51,15 @@
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 
-	<script type="text/javascript" src="game.js"></script>
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', 'UA-45378043-1', 'rfinean.github.io');
+		ga('create', 'UA-45378043-1');
 		ga('send', 'pageview');
 	</script>
+	<script src="game.js"></script>
 </body>
 </html>
