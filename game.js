@@ -92,7 +92,7 @@ this.playOn = function() {
 };
 
 this.fbShare = function() {
-	var url = "http://rfinean.github.io/Eureka/";
+	var url = "http://eurekalanguages.me/";
 	ga('send', 'social', 'facebook', 'share', brag);
 	return !window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(brag),
 		'sharer', 'toolbar=0,status=0,width=626,height=436');
