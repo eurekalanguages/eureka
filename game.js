@@ -9,7 +9,7 @@ var gameboard = document.getElementById("gameboard"),
 	speak = document.getElementById("speak"),
 	html5audio = document.getElementById("html5"),
 	html4audio = document.getElementById("html4"),
-	multiplechoice = document.forms["multiplechoice"],
+	multiplechoice = document.forms["multiplechoice"].elements,
 	resultsboard = document.getElementById("results");
 
 var score = 0,
@@ -18,12 +18,13 @@ var score = 0,
 	answered = [],	// Array of (phrases + language) that have already been asked
 	timer = 10,
 	timeout = null,
-	histogram = [];
+	histogram = [],
+	brag = "";
 
 this.speechReady = function(audioTag) {
-	var i = multiplechoice.elements.length;
+	var i = multiplechoice.length;
 	while (i--) {
-		multiplechoice.elements[i].disabled = false;
+		multiplechoice[i].disabled = false;
 	}
 	timer = 10;
 	countdownboard.innerHTML = String(timer);
@@ -53,10 +54,10 @@ this.nextQuestion = function() {
 	html4audio.src = qn.mp3;
 	html5audio.src = qn.mp3;
 	speak.load();
-	var i = multiplechoice.elements.length;
+	var i = multiplechoice.length;
 	while (i--) {
-		multiplechoice.elements[i].innerHTML = qn.choices[i];
-		multiplechoice.elements[i].className = "";
+		multiplechoice[i].innerHTML = qn.choices[i];
+		multiplechoice[i].className = "";
 	}
 	if (histogram[qn.language] === undefined) {
 		histogram[qn.language] = [0, 0];
@@ -86,14 +87,14 @@ this.checkAnswer = function(guess) {
 
 this.playOn = function() {
 	maxquestions += 10;
+	ga("send", "event", "Game", "extend", brag, score/question);
 	this.nextQuestion();
 };
 
 this.fbShare = function() {
 	var url = "http://rfinean.github.io/Eureka/";
-	var title = "Take the Eureka Languages Challenge yourself! I scored " + score + "points in a " + question + "question game.";
-	ga('send', 'social', 'facebook', 'share', title);
-	return !window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title),
+	ga('send', 'social', 'facebook', 'share', brag);
+	return !window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(brag),
 		'sharer', 'toolbar=0,status=0,width=626,height=436');
 };
 
@@ -153,9 +154,9 @@ function newQuestion(data) {
 }
 
 function displayResult(message){
-	var i = multiplechoice.elements.length;
+	var i = multiplechoice.length;
 	while (i--) {
-		multiplechoice.elements[i].disabled = true;
+		multiplechoice[i].disabled = true;
 	}
 	errorboard.innerHTML = message;
 	errorboard.style.opacity = 1;
@@ -165,13 +166,17 @@ function gameResults(){
 	var languages = [],
 		correct = [],
 		incorrect = [];
+	brag = "I scored " + score + " points, getting ";
 	for (var bar in histogram) {
 		languages.push(bar);
 		correct.push(histogram[bar][0]);
 		incorrect.push(histogram[bar][1] - histogram[bar][0]);
+		brag += histogram[bar][0] + '/' + histogram[bar][1] + " in " + bar + ", ";
 	}
+	brag += "correct in the Eureka Languages Challenge!";
 	drawChart(languages, correct, incorrect);
 	gameboard.className = "game over";
+	ga("send", "event", "Game", "result", brag, score/question);
 }
 
 function drawChart(categs, lowerSeries, upperSeries) {
@@ -213,7 +218,8 @@ function drawChart(categs, lowerSeries, upperSeries) {
 	});
 }
 
+ga("send", "event", "Game", "start", "New game", 0);
+this.nextQuestion();
 };
 
 var game = new gameController(data, baseDirectory, maxquestions, ga);
-game.nextQuestion();

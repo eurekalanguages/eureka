@@ -6,7 +6,7 @@ index.html
 game.css
 game.html
 game.js
-//code.jquery.com/jquery-1.10.1.min.js
+//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
 //code.highcharts.com/highcharts.js
 //www.google-analytics.com/analytics.js
 questions.js
