@@ -75,12 +75,13 @@ this.checkAnswer = function(guess) {
 		histogram[qn.language][0]++;
 		scoreboard.innerHTML = String(score += timer);
 		displayResult("<b class='green'>Correct!</b> That was " + qn.language);
-		ga("send", "event", qn.language, 'correct', qn.answer, timer);
+		ga('send', 'event', qn.language, 'correct', qn.answer, timer);
+		ga('set', 'metric1', String(score));
 	}
 	else {
 		guess.className = "red";
 		displayResult("<b class='red'>No!</b> I said <i>&lsquo;" + qn.answer + "&rsquo;</i> in " + qn.language);
-		ga("send", "event", qn.language, 'incorrect', qn.answer, 0);
+		ga('send', 'event', qn.language, 'incorrect', qn.answer, 0);
 	}
 	setTimeout('game.nextQuestion()', 3000);
 };
@@ -218,7 +219,8 @@ function drawChart(categs, lowerSeries, upperSeries) {
 	});
 }
 
-ga("send", "event", "Game", "start", "New game", 0);
+ga('send', 'event', 'Game', 'start', '', 0);
+ga('set', 'metric1', '0');
 this.nextQuestion();
 };
 

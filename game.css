@@ -7,7 +7,7 @@ body {
 .game {
 	background-color:#eee;
 	border-radius:1em;
-	padding:0.2em;
+	padding: 0.5em;
 }
 @media print, screen and (max-width: 480px) {
 	body {
@@ -124,9 +124,14 @@ button {
 	height:9em;
 }
 
-.fb_share_button {
+.fbshare {
 	color:#fff;
 	border-color:#295582;
-	background:#3b5998;
+	background-color:#3b5998;
 	text-decoration:none;
+}
+
+.about {
+	font-size:50%;
+	text-align:right;
 }
