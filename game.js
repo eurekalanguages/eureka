@@ -30,6 +30,7 @@ this.speechReady = function(audioTag) {
 	countdownboard.innerHTML = String(timer);
 	audioTag.play();
 	timeout = setTimeout('game.countdown()', 1000);
+	ga('send', 'event', 'Game', 'speaking', '', 0);
 };
 
 this.countdown = function() {
