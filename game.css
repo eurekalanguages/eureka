@@ -1,7 +1,7 @@
 body {
 	font-family:Calibri,sans-serif;
 	color:#000;
-	background-color:#bbb;
+	background-color:#555;
 	text-align:center;
 }
 .game {
@@ -74,6 +74,10 @@ body {
 #score {
 	font-weight:bold;
 } 
+
+#pressplay {
+	font-size:75%;
+}
 
 .midpanel {
 	padding:0.4em;

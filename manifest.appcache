@@ -4,13 +4,14 @@ CACHE MANIFEST
 CACHE:
 index.html
 game.css
+//www.google-analytics.com/analytics.js
 game.html
 game.js
+questions.js
+fb.jpg
 //ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
 //code.highcharts.com/highcharts.js
-//www.google-analytics.com/analytics.js
-questions.js
 
-# Resources that require the user to be online
+# The voice files, mediaelement.js and analytics require the user to be online
 NETWORK:
 *

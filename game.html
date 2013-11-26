@@ -1,12 +1,16 @@
 <!DOCTYPE HTML>
 <html manifest="manifest.appcache">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" />
 	<title>Eureka Languages Game</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" type="text/css" href="game.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link rel="stylesheet" href="game.css" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="//code.highcharts.com/highcharts.js"></script>
+<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.11.3/js/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.11.3/css/mediaelementplayer.css" />
+<![endif]-->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -30,10 +34,8 @@
 		</header>
 
 		<div data-role="content" class="playing">
-			<audio id="speak" preload="auto" oncanplaythrough="game.speechReady(this);" autoplay controls>
-				<source id="html5" src="" type="audio/mpeg">
-				<embed id="html4" src="" height=45 width=200 autostart=true>
-			</audio>
+			<div id="pressplay">Press &#9654; to start:</div>
+			<audio id="player" src="null.m4a" type="audio/mp4" oncanplay="game.speechReady(this);" controls></audio>
 			<div class="midpanel" align="right">
 				<span id="error"></span>
 				<span id="timer">10</span>
@@ -51,7 +53,7 @@
 				<a rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Feurekalanguages.me%2F"
 					class="fbshare" onclick="return game.fbShare();" target="_blank">
 					&nbsp;Share on <b>facebook</b>
-					<img src="http://www.usphs.gov/images/home/facebook-logo.png" width="40px" />
+					<img src="fb.jpg" width="40" height="40" />
 				</a>
 			</p>
 			<button onclick="game.playOn()" class="green">Continue playing</button>

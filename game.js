@@ -1,27 +1,28 @@
-var gameController = function(data, baseDirectory, maxquestions, ga) {
-"use strict";
+var gameController = function(d, data, baseDirectory, maxquestions, ga) {
+'use strict';
 
-var gameboard = document.getElementById("gameboard"),
-	scoreboard = document.getElementById("score"),
-	questionboard = document.getElementById("question"),
-	countdownboard = document.getElementById("timer"),
-	errorboard = document.getElementById("error"),
-	speak = document.getElementById("speak"),
-	html5audio = document.getElementById("html5"),
-	html4audio = document.getElementById("html4"),
-	multiplechoice = document.forms["multiplechoice"].elements,
-	resultsboard = document.getElementById("results");
-
-var score = 0,
+var gameboard = d.getElementById('gameboard'),
+	scoreboard = d.getElementById('score'),
+	questionboard = d.getElementById('question'),
+	countdownboard = d.getElementById('timer'),
+	errorboard = d.getElementById('error'),
+	multiplechoice = d.forms['multiplechoice'].elements,
+	resultsboard = d.getElementById('results'),
+	mobprompt = d.getElementById('pressplay'),
+	speak = d.getElementById('player'),
+//	speak = new MediaElementPlayer('#player'),
+	score = 0,
 	question = 0,
 	qn = {},
 	answered = [],	// Array of (phrases + language) that have already been asked
 	timer = 10,
 	timeout = null,
 	histogram = [],
-	brag = "";
+	brag = '';
 
 this.speechReady = function(audioTag) {
+	mobprompt.style.opacity = 0;
+	clearTimeout(timeout);
 	var i = multiplechoice.length;
 	while (i--) {
 		multiplechoice[i].disabled = false;
@@ -36,7 +37,7 @@ this.speechReady = function(audioTag) {
 this.countdown = function() {
 	countdownboard.innerHTML = String(--timer);
 	if (timer === 0) {
-		displayResult("<b class='red'>Too slow!</b> I said <i>&lsquo;" + qn.answer + "&rsquo;</i> in " + qn.language);
+		displayResult('<b class="red">Too slow!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
 		setTimeout('game.nextQuestion()', 3000);
 		ga("send", "event", qn.language, 'too-slow', qn.answer, 0);
 	}
@@ -52,36 +53,35 @@ this.nextQuestion = function() {
 		return;
 	}
 	qn = newQuestion(data);
-	html4audio.src = qn.mp3;
-	html5audio.src = qn.mp3;
+	speak.src = qn.mp3;
 	speak.load();
 	var i = multiplechoice.length;
 	while (i--) {
 		multiplechoice[i].innerHTML = qn.choices[i];
-		multiplechoice[i].className = "";
+		multiplechoice[i].className = '';
 	}
 	if (histogram[qn.language] === undefined) {
 		histogram[qn.language] = [0, 0];
 	}
 	histogram[qn.language][1]++;
 	questionboard.innerHTML = String(++question) + '/' + maxquestions;
-	gameboard.className = "game play";
+	gameboard.className = 'game play';
 	errorboard.style.opacity = 0;
 };
 
 this.checkAnswer = function(guess) {
 	clearTimeout(timeout);
 	if (qn.answer == guess.innerHTML) {
-		guess.className = "green";
+		guess.className = 'green';
 		histogram[qn.language][0]++;
 		scoreboard.innerHTML = String(score += timer);
-		displayResult("<b class='green'>Correct!</b> That was " + qn.language);
+		displayResult('<b class="green">Correct!</b> That was ' + qn.language);
 		ga('send', 'event', qn.language, 'correct', qn.answer, timer);
 		ga('set', 'metric1', String(score));
 	}
 	else {
-		guess.className = "red";
-		displayResult("<b class='red'>No!</b> I said <i>&lsquo;" + qn.answer + "&rsquo;</i> in " + qn.language);
+		guess.className = 'red';
+		displayResult('<b class="red">No!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
 		ga('send', 'event', qn.language, 'incorrect', qn.answer, 0);
 	}
 	setTimeout('game.nextQuestion()', 3000);
@@ -89,12 +89,12 @@ this.checkAnswer = function(guess) {
 
 this.playOn = function() {
 	maxquestions += 10;
-	ga("send", "event", "Game", "extend", brag, score/question);
+	ga('send', 'event', 'Game', 'extend', brag, score/question);
 	this.nextQuestion();
 };
 
 this.fbShare = function() {
-	var url = "http://eurekalanguages.me/";
+	var url = 'http://eurekalanguages.me/';
 	ga('send', 'social', 'facebook', 'share', brag);
 	return !window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(brag),
 		'sharer', 'toolbar=0,status=0,width=626,height=436');
@@ -168,17 +168,17 @@ function gameResults(){
 	var languages = [],
 		correct = [],
 		incorrect = [];
-	brag = "I scored " + score + " points, getting ";
+	brag = 'I scored ' + score + ' points, getting ';
 	for (var bar in histogram) {
 		languages.push(bar);
 		correct.push(histogram[bar][0]);
 		incorrect.push(histogram[bar][1] - histogram[bar][0]);
-		brag += histogram[bar][0] + '/' + histogram[bar][1] + " in " + bar + ", ";
+		brag += histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + ', ';
 	}
-	brag += "correct in the Eureka Languages Challenge!";
+	brag += 'correct in the Eureka Languages Challenge!';
 	drawChart(languages, correct, incorrect);
-	gameboard.className = "game over";
-	ga("send", "event", "Game", "result", brag, score/question);
+	gameboard.className = 'game over';
+	ga('send', 'event', 'Game', 'result', brag, score/question);
 }
 
 function drawChart(categs, lowerSeries, upperSeries) {
@@ -225,4 +225,8 @@ ga('set', 'metric1', '0');
 this.nextQuestion();
 };
 
-var game = new gameController(data, baseDirectory, maxquestions, ga);
+var game;
+
+$(document).ready(function() {
+	game = new gameController(document, data, baseDirectory, maxquestions, ga);
+});
