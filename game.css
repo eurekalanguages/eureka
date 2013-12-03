@@ -101,6 +101,7 @@ body {
 }
 
 button {
+	display:inline-block;
 	-moz-box-shadow:inset 0 1px 0 0 #bbdaf7;
 	-webkit-box-shadow:inset 0 1px 0 0 #bbdaf7;
 	box-shadow:inset 0 1px 0 0 #bbdaf7;

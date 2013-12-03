@@ -39,7 +39,7 @@ this.countdown = function() {
 	if (timer === 0) {
 		displayResult('<b class="red">Too slow!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
 		setTimeout('game.nextQuestion()', 3000);
-		ga("send", "event", qn.language, 'too-slow', qn.answer, 0);
+		ga('send', 'event', qn.language, 'too-slow', qn.answer, 0);
 	}
 	else {
 		timeout = setTimeout('game.countdown()', 1000);
