@@ -6,8 +6,7 @@ var gameboard = d.getElementById('gameboard'),
 	questionboard = d.getElementById('question'),
 	countdownboard = d.getElementById('timer'),
 	errorboard = d.getElementById('error'),
-	multiplechoice = d.forms['multiplechoice'].elements,
-	resultsboard = d.getElementById('results'),
+	multiplechoice = d.forms.multiplechoice.elements,
 	mobprompt = d.getElementById('pressplay'),
 	speak = d.getElementById('player'),
 //	speak = new MediaElementPlayer('#player'),
@@ -170,10 +169,12 @@ function gameResults(){
 		incorrect = [];
 	brag = 'I scored ' + score + ' points, getting ';
 	for (var bar in histogram) {
-		languages.push(bar);
-		correct.push(histogram[bar][0]);
-		incorrect.push(histogram[bar][1] - histogram[bar][0]);
-		brag += histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + ', ';
+		if (histogram.hasOwnProperty(bar)) {
+			languages.push(bar);
+			correct.push(histogram[bar][0]);
+			incorrect.push(histogram[bar][1] - histogram[bar][0]);
+			brag += histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + ', ';
+		}
 	}
 	brag += 'correct in the Eureka Languages Challenge!';
 	drawChart(languages, correct, incorrect);
