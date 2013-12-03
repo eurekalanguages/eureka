@@ -30,7 +30,7 @@ this.speechReady = function(audioTag) {
 	timer = 10;
 	countdownboard.innerHTML = String(timer);
 	audioTag.play();
-	timeout = setTimeout('game.countdown()', 1000);
+	timeout = setTimeout(game.countdown, 1000);
 	ga('send', 'event', 'Game', 'speaking', '', 0);
 };
 
@@ -38,11 +38,11 @@ this.countdown = function() {
 	countdownboard.innerHTML = String(--timer);
 	if (timer === 0) {
 		displayResult('<b class="red">Too slow!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
-		setTimeout('game.nextQuestion()', 3000);
+		setTimeout(game.nextQuestion, 3000);
 		ga('send', 'event', qn.language, 'too-slow', qn.answer, 0);
 	}
 	else {
-		timeout = setTimeout('game.countdown()', 1000);
+		timeout = setTimeout(game.countdown, 1000);
 	}
 };
 
@@ -84,7 +84,7 @@ this.checkAnswer = function(guess) {
 		displayResult('<b class="red">No!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
 		ga('send', 'event', qn.language, 'incorrect', qn.answer, 0);
 	}
-	setTimeout('game.nextQuestion()', 3000);
+	setTimeout(game.nextQuestion, 3000);
 };
 
 this.playOn = function() {
