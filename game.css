@@ -6,7 +6,6 @@ body {
 }
 .game {
 	background-color:#eee;
-	border-radius:1em;
 	padding: 0.5em;
 }
 @media print, screen and (max-width: 480px) {
@@ -24,15 +23,15 @@ body {
 }
 @media print, screen and (min-width: 670px) {
 	body {
-		background-image:url('http://dl.dropboxusercontent.com/u/26353384/Language%20sound%20files/flags.png');
+		background-image:url("http://dl.dropboxusercontent.com/u/26353384/Language%20sound%20files/flags.png");
 	}
 	.game {
 		width:595px;
 		margin:0 auto;
-		-webkit-box-shadow:0 0 4em #36c;
-		-moz-box-shadow:0 0 4em #36c;
-		-o-box-shadow:0 0 4em #336c;
-		box-shadow:0 0 4em #36c;
+		-webkit-box-shadow:0 0 4em #003;
+		-moz-box-shadow:0 0 4em #003;
+		-o-box-shadow:0 0 4em #003;
+		box-shadow:0 0 4em #003;
 	}
 }
 
@@ -54,16 +53,18 @@ body {
 .scoreboard {
 	margin:0.4em;
 	padding:0.4em;
+	-webkit-border-radius:0.5em;
+	-moz-border-radius:0.5em;
+	border-radius:0.5em;
 	color:#fff;
 	font-family:Verdana,sans-serif;
-	border-radius:15px;
-	background:#252525;
-	filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF696969', endColorstr='#FF252525');
-	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #696969), color-stop(95%, #363636), color-stop(97%, #313131), color-stop(100%, #252525));
-	background-image:-webkit-linear-gradient(top, #696969 0%,#363636 95%,#313131 97%,#252525 100%);
-	background-image:-moz-linear-gradient(top, #696969 0%,#363636 95%,#313131 97%,#252525 100%);
-	background-image:-o-linear-gradient(top, #696969 0%,#363636 95%,#313131 97%,#252525 100%);
-	background-image:linear-gradient(top, #696969 0%,#363636 95%,#313131 97%,#252525 100%)
+	background-color:#444;
+	filter:progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorstr="#666", endColorstr="#333");
+	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%,#666), color-stop(95%,#333), color-stop(100%,#222));
+	background-image:-webkit-linear-gradient(top, #666 0%,#333 95%,#222 100%);
+	background-image:-moz-linear-gradient(top, #666 0%,#333 95%,#222 100%);
+	background-image:-o-linear-gradient(top, #666 0%,#333 95%,#222 100%);
+	background-image:linear-gradient(to bottom, #666 0%,#333 95%,#222 100%)
 }
 .scoreboard span {
 	display:inline-block;
@@ -92,37 +93,41 @@ body {
 	width:80%;
 	opacity:0;
 	-webkit-transition:opacity 0.5s;
+	-moz-transition:opacity 0.5s;
+	-o-transition:opacity 0.5s;
 	transition:opacity 0.5s;
 }
 #timer {
 	width:15%;
 	text-align:right;
-	color:#666;
+	color:#555;
 }
 
 button {
-	display:inline-block;
-	-moz-box-shadow:inset 0 1px 0 0 #bbdaf7;
-	-webkit-box-shadow:inset 0 1px 0 0 #bbdaf7;
-	box-shadow:inset 0 1px 0 0 #bbdaf7;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5));
-	background:-webkit-linear-gradient(center top, #79bbff 5%, #378de5 100%);
-	background:-moz-linear-gradient(center top, #79bbff 5%, #378de5 100%);
-	background:-o-linear-gradient(center top, #79bbff 5%, #378de5 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
-	background-color:#79bbff;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	color:#ffffff;
+	vertical-align:top;
+	min-height:5em;
+	width:45%;
+	cursor:pointer;
+	-webkit-box-shadow:0 0 0.6em #358;
+	-moz-box-shadow:0 0 0.6em #358;
+	-o-box-shadow:0 0 0.6em #358;
+	box-shadow:0 0 0.6em #358;
+	background-color:#7bf;
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#7bf", endColorstr="#378de5");
+	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,#7bf), color-stop(1,#378de5));
+	background-image:-webkit-linear-gradient(top,#7bf,#378de5);
+	background-image:-moz-linear-gradient(top,#7bf,#378de5);
+	background-image:-o-linear-gradient(top,#7bf,#378de5);
+	background-image:linear-gradient(to bottom,#7bf,#378de5);
+	-webkit-border-radius:0.3em;
+	-moz-border-radius:0.3em;
+	border-radius:0.3em;
+	color:#fff;
 	font-family:"Trebuchet MS",sans-serif;
 	font-size:0.85em;
 	font-weight:bold;
-	min-height:5em;
-	width:45%;
 	text-decoration:none;
-	text-shadow:1px 1px 0 #528ecc;
+	text-shadow:0.04em 0.05em 0 #58c;
 }
 
 #results {
@@ -131,7 +136,6 @@ button {
 
 .fbshare {
 	color:#fff;
-	border-color:#295582;
 	background-color:#3b5998;
 	text-decoration:none;
 }
