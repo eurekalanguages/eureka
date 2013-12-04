@@ -56,7 +56,7 @@ body {
 	-moz-border-radius:0.5em;
 	border-radius:0.5em;
 	background-color:#444;
-	filter:progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorstr="#666", endColorstr="#333");
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#ff666666", endColorstr="#ff333333");
 	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%,#666), color-stop(95%,#333), color-stop(100%,#222));
 	background-image:-webkit-linear-gradient(top, #666 0%,#333 95%,#222 100%);
 	background-image:-moz-linear-gradient(top, #666 0%,#333 95%,#222 100%);
@@ -114,7 +114,7 @@ button {
 	-moz-box-shadow:0 0 0.6em #358;
 	box-shadow:0 0 0.6em #358;
 	background-color:#7bf;
-	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#7bf", endColorstr="#48e");
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#ff77bbff", endColorstr="#ff4488ee");
 	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,#7bf), color-stop(1,#48e));
 	background-image:-webkit-linear-gradient(top,#7bf,#48e);
 	background-image:-moz-linear-gradient(top,#7bf,#48e);
@@ -127,7 +127,6 @@ button {
 	text-decoration:none;
 	text-shadow:0.04em 0.05em 0 #58c;
 }
-
 button.green {
 	-webkit-box-shadow:0 0 1em #3c8;
 	-moz-box-shadow:0 0 1em #3c8;
