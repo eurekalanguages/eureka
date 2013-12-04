@@ -30,7 +30,6 @@ body {
 		margin:0 auto;
 		-webkit-box-shadow:0 0 4em #003;
 		-moz-box-shadow:0 0 4em #003;
-		-o-box-shadow:0 0 4em #003;
 		box-shadow:0 0 4em #003;
 	}
 }
@@ -56,15 +55,15 @@ body {
 	-webkit-border-radius:0.5em;
 	-moz-border-radius:0.5em;
 	border-radius:0.5em;
-	color:#fff;
-	font-family:Verdana,sans-serif;
 	background-color:#444;
 	filter:progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorstr="#666", endColorstr="#333");
 	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%,#666), color-stop(95%,#333), color-stop(100%,#222));
 	background-image:-webkit-linear-gradient(top, #666 0%,#333 95%,#222 100%);
 	background-image:-moz-linear-gradient(top, #666 0%,#333 95%,#222 100%);
 	background-image:-o-linear-gradient(top, #666 0%,#333 95%,#222 100%);
-	background-image:linear-gradient(to bottom, #666 0%,#333 95%,#222 100%)
+	background-image:linear-gradient(to bottom, #666 0%,#333 95%,#222 100%);
+	color:#fff;
+	font-family:Verdana,sans-serif;
 }
 .scoreboard span {
 	display:inline-block;
@@ -104,30 +103,40 @@ body {
 }
 
 button {
+	cursor:pointer;
 	vertical-align:top;
 	min-height:5em;
 	width:45%;
-	cursor:pointer;
-	-webkit-box-shadow:0 0 0.6em #358;
-	-moz-box-shadow:0 0 0.6em #358;
-	-o-box-shadow:0 0 0.6em #358;
-	box-shadow:0 0 0.6em #358;
-	background-color:#7bf;
-	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#7bf", endColorstr="#378de5");
-	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,#7bf), color-stop(1,#378de5));
-	background-image:-webkit-linear-gradient(top,#7bf,#378de5);
-	background-image:-moz-linear-gradient(top,#7bf,#378de5);
-	background-image:-o-linear-gradient(top,#7bf,#378de5);
-	background-image:linear-gradient(to bottom,#7bf,#378de5);
 	-webkit-border-radius:0.3em;
 	-moz-border-radius:0.3em;
 	border-radius:0.3em;
+	-webkit-box-shadow:0 0 0.6em #358;
+	-moz-box-shadow:0 0 0.6em #358;
+	box-shadow:0 0 0.6em #358;
+	background-color:#7bf;
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#7bf", endColorstr="#48e");
+	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,#7bf), color-stop(1,#48e));
+	background-image:-webkit-linear-gradient(top,#7bf,#48e);
+	background-image:-moz-linear-gradient(top,#7bf,#48e);
+	background-image:-o-linear-gradient(top,#7bf,#48e);
+	background-image:linear-gradient(to bottom,#7bf,#48e);
 	color:#fff;
 	font-family:"Trebuchet MS",sans-serif;
 	font-size:0.85em;
 	font-weight:bold;
 	text-decoration:none;
 	text-shadow:0.04em 0.05em 0 #58c;
+}
+
+button.green {
+	-webkit-box-shadow:0 0 1em #3c8;
+	-moz-box-shadow:0 0 1em #3c8;
+	box-shadow:0 0 1em #3c8;
+}
+button.red {
+	-webkit-box-shadow:0 0 1em #a58;
+	-moz-box-shadow:0 0 1em #a58;
+	box-shadow:0 0 1em #a58;
 }
 
 #results {
