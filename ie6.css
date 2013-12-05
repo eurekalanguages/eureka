@@ -1,0 +1,18 @@
+body {
+	background-image:url("http://dl.dropboxusercontent.com/u/26353384/Language%20sound%20files/flags.png");
+	font-size:150%;
+}
+.game {
+	width:595px;
+	margin:0 auto;
+	padding:1em;
+	filter:
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=0,strength=16), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=45,strength=10), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=90,strength=16), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=135,strength=10), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=180,strength=16), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=225,strength=10), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=270,strength=16), 
+		progid:DXImageTransform.Microsoft.Shadow(color=#000033,direction=315,strength=10);
+}

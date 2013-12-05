@@ -3,11 +3,13 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Eureka Languages Game</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
 	<link rel="stylesheet" href="game.css" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//code.highcharts.com/highcharts.js"></script>
 <!--[if lte IE 8]>
+	<link rel="stylesheet" href="ie6.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.11.3/js/mediaelement-and-player.min.js"></script>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.11.3/css/mediaelementplayer.css" />
 <![endif]-->
@@ -35,7 +37,9 @@
 
 		<div data-role="content" class="playing">
 			<p id="pressplay">Press &#9654; to start:</p>
-			<audio id="player" src="null.m4a" type="audio/mp4" oncanplay="game.speechReady(this);" controls></audio>
+			<div>
+				<audio id="player" src="null.m4a" type="audio/mp4" oncanplay="game.speechReady(this);" controls></audio>
+			</div>
 			<div class="midpanel" align="right">
 				<span id="error"></span>
 				<span id="timer">10</span>

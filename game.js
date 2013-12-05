@@ -1,3 +1,11 @@
+var game;
+
+if (!Object.keys) Object.prototype.keys = function(o) {
+	var k=[],p;
+	for (p in o) if (Object.prototype.hasOwnProperty.call(o,p)) k.push(p);
+	return k;
+};
+
 var gameController = function(d, data, baseDirectory, maxquestions, ga) {
 'use strict';
 
@@ -26,19 +34,18 @@ this.speechReady = function(audioTag) {
 	while (i--) {
 		multiplechoice[i].disabled = false;
 	}
-	timer = 10;
-	countdownboard.innerHTML = String(timer);
+	timer = 11;
+	this.countdown();
 	audioTag.play();
-	timeout = setTimeout(game.countdown, 1000);
 	ga('send', 'event', 'Game', 'speaking', '', 0);
 };
 
 this.countdown = function() {
 	countdownboard.innerHTML = String(--timer);
 	if (timer === 0) {
-		displayResult('<b class="red">Too slow!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
+		displayResult('<b class="red">Too slow!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.lng);
 		setTimeout(game.nextQuestion, 3000);
-		ga('send', 'event', qn.language, 'too-slow', qn.answer, 0);
+		ga('send', 'event', qn.lng, 'too-slow', qn.answer, 0);
 	}
 	else {
 		timeout = setTimeout(game.countdown, 1000);
@@ -59,10 +66,10 @@ this.nextQuestion = function() {
 		multiplechoice[i].innerHTML = qn.choices[i];
 		multiplechoice[i].className = '';
 	}
-	if (histogram[qn.language] === undefined) {
-		histogram[qn.language] = [0, 0];
+	if (histogram[qn.lng] === undefined) {
+		histogram[qn.lng] = [0, 0];
 	}
-	histogram[qn.language][1]++;
+	histogram[qn.lng][1]++;
 	questionboard.innerHTML = String(++question) + '/' + maxquestions;
 	gameboard.className = 'game play';
 	errorboard.style.opacity = 0;
@@ -72,16 +79,16 @@ this.checkAnswer = function(guess) {
 	clearTimeout(timeout);
 	if (qn.answer == guess.innerHTML) {
 		guess.className = 'green';
-		histogram[qn.language][0]++;
+		histogram[qn.lng][0]++;
 		scoreboard.innerHTML = String(score += timer);
-		displayResult('<b class="green">Correct!</b> That was ' + qn.language);
-		ga('send', 'event', qn.language, 'correct', qn.answer, timer);
+		displayResult('<b class="green">Correct!</b> That was ' + qn.lng);
+		ga('send', 'event', qn.lng, 'correct', qn.answer, timer);
 		ga('set', 'metric1', String(score));
 	}
 	else {
 		guess.className = 'red';
-		displayResult('<b class="red">No!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.language);
-		ga('send', 'event', qn.language, 'incorrect', qn.answer, 0);
+		displayResult('<b class="red">No!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.lng);
+		ga('send', 'event', qn.lng, 'incorrect', qn.answer, 0);
 	}
 	setTimeout(game.nextQuestion, 3000);
 };
@@ -124,13 +131,13 @@ function pickAnswerAndChoices(questions, category, numberOfChoices) {
 	var shuffledKeys = shuffle(keys);	// Shuffle them so they are in a random order
 
 	var answer = shuffledKeys[0];		// First one will be the answer
-	var language = shuffle(questions[answer])[0];	// Pick a random langauge for the answer
+	var lng = shuffle(questions[answer])[0];	// Pick a random langauge for the answer
 	var choices = shuffle(shuffledKeys.slice(0,numberOfChoices));	// Pick & shuffle the first n choices, which includes the answer   
 	return {
-		language: language,
+		lng: lng,
 		category: category,
 		answer: answer,
-		mp3: baseDirectory + '/' + language + '/' + convertToSlug(answer) + '.m4a',
+		mp3: baseDirectory + '/' + lng + '/' + convertToSlug(answer) + '.m4a',
 		choices: choices
 	};
 }
@@ -149,8 +156,8 @@ function newQuestion(data) {
 		// Keep looping until we find an unseen answer
 		result = getChoices(data, 4);
 	}
-	while (answered.indexOf(result.answer + result.language) >= 0);
-	answered.push(result.answer + result.language);
+	while (answered[result.answer + result.lng] !== undefined);
+	answered.push(result.answer + result.lng);
 	return result;
 }
 
@@ -189,7 +196,7 @@ function drawChart(categs, lowerSeries, upperSeries) {
 			renderTo: 'results'
 		},
 		title: {
-			text: null,
+			text: null
 		},
 		xAxis: {
 			categories: categs
@@ -202,7 +209,7 @@ function drawChart(categs, lowerSeries, upperSeries) {
 			color: '#000'
 		},
 		legend: {
-			enabled: false,
+			enabled: false
 		},
 		plotOptions: {
 			column: {
@@ -225,8 +232,6 @@ ga('send', 'event', 'Game', 'start', '', 0);
 ga('set', 'metric1', '0');
 this.nextQuestion();
 };
-
-var game;
 
 $(document).ready(function() {
 	game = new gameController(document, data, baseDirectory, maxquestions, ga);
