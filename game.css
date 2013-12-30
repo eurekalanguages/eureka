@@ -1,12 +1,12 @@
 body {
+	text-align:center;
 	font-family:Calibri,sans-serif;
 	color:#000;
 	background-color:#555;
-	text-align:center;
 }
 .game {
-	background-color:#eee;
 	padding: 0.5em;
+	background-color:#eee;
 }
 @media print, screen and (max-width: 480px) {
 	body {
@@ -55,6 +55,8 @@ body {
 	-webkit-border-radius:0.5em;
 	-moz-border-radius:0.5em;
 	border-radius:0.5em;
+	color:#fff;
+	font-family:Verdana,sans-serif;
 	background-color:#444;
 	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#ff666666", endColorstr="#ff333333");
 	background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%,#666), color-stop(95%,#333), color-stop(100%,#222));
@@ -62,8 +64,6 @@ body {
 	background-image:-moz-linear-gradient(top, #666 0%,#333 95%,#222 100%);
 	background-image:-o-linear-gradient(top, #666 0%,#333 95%,#222 100%);
 	background-image:linear-gradient(to bottom, #666 0%,#333 95%,#222 100%);
-	color:#fff;
-	font-family:Verdana,sans-serif;
 }
 .scoreboard span {
 	display:inline-block;
@@ -113,6 +113,12 @@ button {
 	-webkit-box-shadow:0 0 0.6em #358;
 	-moz-box-shadow:0 0 0.6em #358;
 	box-shadow:0 0 0.6em #358;
+	font-family:"Trebuchet MS",sans-serif;
+	color:#fff;
+	font-size:0.85em;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0.04em 0.05em 0 #58c;
 	background-color:#7bf;
 	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr="#ff77bbff", endColorstr="#ff4488ee");
 	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,#7bf), color-stop(1,#48e));
@@ -120,12 +126,6 @@ button {
 	background-image:-moz-linear-gradient(top,#7bf,#48e);
 	background-image:-o-linear-gradient(top,#7bf,#48e);
 	background-image:linear-gradient(to bottom,#7bf,#48e);
-	color:#fff;
-	font-family:"Trebuchet MS",sans-serif;
-	font-size:0.85em;
-	font-weight:bold;
-	text-decoration:none;
-	text-shadow:0.04em 0.05em 0 #58c;
 }
 button.green {
 	-webkit-box-shadow:0 0 1em #3c8;
@@ -144,8 +144,8 @@ button.red {
 
 .fbshare {
 	color:#fff;
-	background-color:#3b5998;
 	text-decoration:none;
+	background-color:#3b5998;
 }
 
 .about {

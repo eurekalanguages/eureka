@@ -6,12 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
 	<link rel="stylesheet" href="game.css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//code.highcharts.com/adapters/standalone-framework.js"></script>
 	<script src="//code.highcharts.com/highcharts.js"></script>
 <!--[if lte IE 8]>
 	<link rel="stylesheet" href="ie6.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.11.3/js/mediaelement-and-player.min.js"></script>
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/mediaelement/2.11.3/css/mediaelementplayer.css" />
+	<script src="http://api.html5media.info/1.1.6/html5media.min.js"></script>
 <![endif]-->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,17 +37,18 @@
 		<div data-role="content" class="playing">
 			<p id="pressplay">Press &#9654; to start:</p>
 			<div>
-				<audio id="player" src="null.m4a" type="audio/mp4" oncanplay="game.speechReady(this);" controls></audio>
+				<audio id="player" src="null.m4a" type="audio/mp4"
+					oncanplaythrough="game.speechReady(this);" controls></audio>
 			</div>
 			<div class="midpanel" align="right">
 				<span id="error"></span>
 				<span id="timer">10</span>
 			</div>
 			<form action="#" id="multiplechoice" onsubmit="return false;">
-				<button onclick="game.checkAnswer(this);">?</button>
-				<button onclick="game.checkAnswer(this);">?</button>
-				<button onclick="game.checkAnswer(this);">?</button>
-				<button onclick="game.checkAnswer(this);">?</button>
+				<button onclick="game.checkAnswer(this);"></button>
+				<button onclick="game.checkAnswer(this);"></button>
+				<button onclick="game.checkAnswer(this);"></button>
+				<button onclick="game.checkAnswer(this);"></button>
 			</form>
 		</div>
 		<div data-role="content" class="gameover">

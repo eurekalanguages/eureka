@@ -17,7 +17,6 @@ var gameboard = d.getElementById('gameboard'),
 	multiplechoice = d.forms.multiplechoice.elements,
 	mobprompt = d.getElementById('pressplay'),
 	speak = d.getElementById('player'),
-//	speak = new MediaElementPlayer('#player'),
 	score = 0,
 	question = 0,
 	qn = {},
@@ -233,6 +232,4 @@ ga('set', 'metric1', '0');
 this.nextQuestion();
 };
 
-$(document).ready(function() {
-	game = new gameController(document, data, baseDirectory, maxquestions, ga);
-});
+game = new gameController(document, data, baseDirectory, maxquestions, ga);
