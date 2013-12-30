@@ -9,7 +9,7 @@ game.html
 game.js
 questions.js
 fb.jpg
-//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+//code.highcharts.com/adapters/standalone-framework.js
 //code.highcharts.com/highcharts.js
 
 # The voice files, mediaelement.js and analytics require the user to be online
