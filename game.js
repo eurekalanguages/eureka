@@ -183,8 +183,8 @@ function gameResults(){
 		}
 	}
 	brag += 'correct in the Eureka Languages Challenge!';
-	drawChart(languages, correct, incorrect);
 	gameboard.className = 'game over';
+	drawChart(languages, correct, incorrect);
 	ga('send', 'event', 'Game', 'result', brag, score/question);
 }
 
