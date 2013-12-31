@@ -149,6 +149,9 @@ button.red {
 }
 
 .about {
-	font-size:60%;
+	font-size:16px;
 	text-align:right;
+}
+.about iframe {
+	vertical-align:top;
 }
