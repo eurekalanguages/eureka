@@ -66,5 +66,21 @@
 	</div>
 	<script src="questions.js"></script>
 	<script src="game.js"></script>
+
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId: '1378630869050407',
+				status: true
+			});
+		};
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 </body>
 </html>

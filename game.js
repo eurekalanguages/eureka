@@ -101,8 +101,13 @@ this.playOn = function() {
 this.fbShare = function() {
 	var url = 'http://eurekalanguages.me/';
 	ga('send', 'social', 'facebook', 'share', brag);
-	return !window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(brag),
-		'sharer', 'toolbar=0,status=0,width=626,height=436');
+	FB.ui({
+		method: 'feed',
+		link: url,
+		picture: baseDirectory + '/flags.png',
+		name: 'I scored ' + score + ' points in a ' + maxquestions + ' question Eureka Languages game',
+		description: brag,
+	}, function(response){});
 };
 
 
@@ -173,7 +178,7 @@ function gameResults(){
 	var languages = [],
 		correct = [],
 		incorrect = [];
-	brag = 'I scored ' + score + ' points, getting ';
+	brag = 'I got ';
 	for (var bar in histogram) {
 		if (histogram.hasOwnProperty(bar)) {
 			languages.push(bar);
@@ -182,7 +187,7 @@ function gameResults(){
 			brag += histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + ', ';
 		}
 	}
-	brag += 'correct in the Eureka Languages Challenge!';
+	brag += 'correct';
 	gameboard.className = 'game over';
 	drawChart(languages, correct, incorrect);
 	ga('send', 'event', 'Game', 'result', brag, score/question);

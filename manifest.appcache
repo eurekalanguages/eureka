@@ -11,6 +11,7 @@ questions.js
 fb.jpg
 //code.highcharts.com/adapters/standalone-framework.js
 //code.highcharts.com/highcharts.js
+//connect.facebook.net/en_US/all.js
 
 # The voice files, mediaelement.js and analytics require the user to be online
 NETWORK:
