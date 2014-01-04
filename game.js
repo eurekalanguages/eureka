@@ -1,12 +1,5 @@
-var game;
-
-if (!Object.keys) Object.prototype.keys = function(o) {
-	var k=[],p;
-	for (p in o) if (Object.prototype.hasOwnProperty.call(o,p)) k.push(p);
-	return k;
-};
-
-var gameController = function(d, data, baseDirectory, maxquestions, ga) {
+var game,
+	gameController = function(d, data, baseDirectory, maxquestions, ga) {
 'use strict';
 
 var gameboard = d.getElementById('gameboard'),
@@ -25,6 +18,12 @@ var gameboard = d.getElementById('gameboard'),
 	timeout = null,
 	histogram = [],
 	brag = '';
+
+if (!Object.keys) Object.prototype.keys = function(o) {
+	var k=[],p;
+	for (p in o) if (Object.prototype.hasOwnProperty.call(o,p)) k.push(p);
+	return k;
+};
 
 this.speechReady = function(audioTag) {
 	mobprompt.style.opacity = 0;
@@ -105,8 +104,8 @@ this.fbShare = function() {
 		method: 'feed',
 		link: url,
 		picture: baseDirectory + '/flags.png',
-		name: 'I scored ' + score + ' points in a ' + maxquestions + ' question Eureka Languages game',
-		description: brag,
+		name: 'I scored ' + score + ' points in a ' + question + ' question Eureka Languages game',
+		description: 'I got ' + brag,
 	}, function(response){});
 };
 
@@ -177,17 +176,18 @@ function displayResult(message){
 function gameResults(){
 	var languages = [],
 		correct = [],
-		incorrect = [];
-	brag = 'I got ';
+		incorrect = [],
+		separator = '';
+	brag = ' correct';
 	for (var bar in histogram) {
 		if (histogram.hasOwnProperty(bar)) {
 			languages.push(bar);
 			correct.push(histogram[bar][0]);
 			incorrect.push(histogram[bar][1] - histogram[bar][0]);
-			brag += histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + ', ';
+			brag = histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + separator + brag;
+			if (separator !== ', ') separator = separator ? ', ' : ' and ';
 		}
 	}
-	brag += 'correct';
 	gameboard.className = 'game over';
 	drawChart(languages, correct, incorrect);
 	ga('send', 'event', 'Game', 'result', brag, score/question);
