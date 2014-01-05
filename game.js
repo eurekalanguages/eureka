@@ -42,6 +42,7 @@ this.countdown = function() {
 	countdownboard.innerHTML = String(--timer);
 	if (timer === 0) {
 		displayResult('<b class="red">Too slow!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.lng);
+		countdownboard.className = 'red';
 		setTimeout(game.nextQuestion, 3000);
 		ga('send', 'event', qn.lng, 'too-slow', qn.answer, 0);
 	}
@@ -59,6 +60,8 @@ this.nextQuestion = function() {
 	qn = newQuestion(data);
 	speak.src = qn.mp3;
 	speak.load();
+	countdownboard.innerHTML = '...';
+	countdownboard.className = '';
 	var i = multiplechoice.length;
 	while (i--) {
 		multiplechoice[i].innerHTML = qn.choices[i];
@@ -76,7 +79,7 @@ this.nextQuestion = function() {
 this.checkAnswer = function(guess) {
 	clearTimeout(timeout);
 	if (qn.answer == guess.innerHTML) {
-		guess.className = 'green';
+		countdownboard.className = guess.className = 'green';
 		histogram[qn.lng][0]++;
 		scoreboard.innerHTML = String(score += timer);
 		displayResult('<b class="green">Correct!</b> That was ' + qn.lng);
@@ -84,7 +87,7 @@ this.checkAnswer = function(guess) {
 		ga('set', 'metric1', String(score));
 	}
 	else {
-		guess.className = 'red';
+		countdownboard.className = guess.className = 'red';
 		displayResult('<b class="red">No!</b> I said <i>&lsquo;' + qn.answer + '&rsquo;</i> in ' + qn.lng);
 		ga('send', 'event', qn.lng, 'incorrect', qn.answer, 0);
 	}
