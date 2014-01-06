@@ -103,13 +103,20 @@ this.playOn = function() {
 this.fbShare = function() {
 	var url = 'http://eurekalanguages.me/';
 	ga('send', 'social', 'facebook', 'share', brag);
-	FB.ui({
-		method: 'feed',
-		link: url,
-		picture: baseDirectory + '/flags.png',
-		name: 'I scored ' + score + ' points in a ' + question + ' question Eureka Languages game',
-		description: 'I got ' + brag,
-	}, function(response){});
+	FB.ui(
+		{
+			method: 'feed',
+			link: url,
+			picture: baseDirectory + '/flags.png',
+			name: 'I scored ' + score + ' points in a ' + question + ' question Eureka Languages game',
+			description: 'I got ' + brag,
+		},
+		function(response) {
+			ga('send', 'social', 'facebook',
+				(response && response.post_id) ? 'published' : 'cancelled',
+				brag);
+		}
+	);
 };
 
 
