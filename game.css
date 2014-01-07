@@ -23,7 +23,7 @@ body {
 }
 @media print, screen and (min-width: 670px) {
 	body {
-		background-image:url("http://dl.dropboxusercontent.com/u/26353384/Language%20sound%20files/flags.png");
+		background-image:url("flags.png");
 	}
 	.game {
 		width:595px;
@@ -147,7 +147,10 @@ button.red {
 	background-color:#3b5998;
 }
 
-.about {
+.about,
+.about :link,
+.about :visited {
+	color:#3b5998;
 	font-size:16px;
 	text-align:right;
 }

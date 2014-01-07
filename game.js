@@ -1,5 +1,5 @@
 var game,
-	gameController = function(d, data, baseDirectory, maxquestions, ga) {
+	gameController = function(d, data, url, baseDirectory, maxquestions, ga) {
 'use strict';
 
 var gameboard = d.getElementById('gameboard'),
@@ -101,15 +101,15 @@ this.playOn = function() {
 };
 
 this.fbShare = function() {
-	var url = 'http://eurekalanguages.me/';
 	ga('send', 'social', 'facebook', 'share', brag);
 	FB.ui(
 		{
 			method: 'feed',
 			link: url,
-			picture: baseDirectory + '/flags.png',
+			picture: url + 'flags.png',
 			name: 'I scored ' + score + ' points in a ' + question + ' question Eureka Languages game',
 			description: 'I got ' + brag,
+			actions: [{'name': 'Take the Challenge yourself', 'link': url}]
 		},
 		function(response) {
 			ga('send', 'social', 'facebook',
@@ -247,4 +247,4 @@ ga('set', 'metric1', '0');
 this.nextQuestion();
 };
 
-game = new gameController(document, data, baseDirectory, maxquestions, ga);
+game = new gameController(document, data, 'http://eurekalanguages.me/', baseDirectory, maxquestions, ga);
