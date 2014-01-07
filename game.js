@@ -102,7 +102,7 @@ this.playOn = function() {
 
 this.fbShare = function() {
 	ga('send', 'social', 'facebook', 'share', brag);
-	FB.ui(
+	return !FB.ui(
 		{
 			method: 'feed',
 			link: url,
