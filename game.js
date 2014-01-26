@@ -1,5 +1,5 @@
 var game,
-	gameController = function(d, data, url, baseDirectory, maxquestions, ga) {
+	GameController = function(d, data, url, baseDirectory, maxquestions, ga) {
 'use strict';
 
 var gameboard = d.getElementById('gameboard'),
@@ -247,4 +247,4 @@ ga('set', 'metric1', '0');
 this.nextQuestion();
 };
 
-game = new gameController(document, data, 'http://eurekalanguages.me/', baseDirectory, maxquestions, ga);
+game = new GameController(document, data, 'http://eurekalanguages.me/', baseDirectory, maxquestions, ga);
