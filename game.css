@@ -157,3 +157,7 @@ button.red {
 .about iframe {
 	vertical-align:top;
 }
+.dialogue {
+	font-size:60%;
+	text-align:left;
+}
