@@ -1,5 +1,5 @@
 var maxquestions = 20;
-var baseDirectory = 'http://dl.dropboxusercontent.com/u/26353384/Language%20sound%20files';
+var baseDirectory = './voices';
 
 var data = {
 	"words": {
