@@ -244,7 +244,6 @@ function drawChart(categs, lowerSeries, upperSeries) {
 
 ga('send', 'event', 'Game', 'start', '', 0);
 ga('set', 'metric1', '0');
-this.nextQuestion();
 };
 
 game = new GameController(document, data, 'http://eurekalanguages.me/', baseDirectory, maxquestions, ga);
