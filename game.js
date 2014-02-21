@@ -25,9 +25,11 @@ if (!Object.keys) Object.prototype.keys = function(o) {
 	return k;
 };
 
+this.stop = function() { clearTimeout(timeout); };
+
 this.speechReady = function(audioTag) {
 	mobprompt.style.opacity = 0;
-	clearTimeout(timeout);
+	this.stop();
 	var i = multiplechoice.length;
 	while (i--) {
 		multiplechoice[i].disabled = false;
@@ -52,7 +54,7 @@ this.countdown = function() {
 };
 
 this.nextQuestion = function() {
-	clearTimeout(timeout);
+	this.stop();
 	if (question == maxquestions) {
 		gameResults();
 		return;
@@ -77,7 +79,7 @@ this.nextQuestion = function() {
 };
 
 this.checkAnswer = function(guess) {
-	clearTimeout(timeout);
+	this.stop();
 	if (qn.answer == guess.innerHTML) {
 		countdownboard.className = guess.className = 'green';
 		histogram[qn.lng][0]++;
