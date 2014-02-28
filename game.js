@@ -185,21 +185,46 @@ function displayResult(message){
 	errorboard.style.opacity = 1;
 }
 
-function gameResults(){
+function List() {
+	var txt = '',
+		sep = '';
+	this.unshift = function(item) {
+		txt = item + sep + txt;
+		if (sep !== ', ') sep = sep ? ', ' : ' and ';
+	};
+	this.toString = function() { return txt; };
+}
+
+function gameResults() {
 	var languages = [],
 		correct = [],
 		incorrect = [],
-		separator = '';
-	brag = ' correct';
-	for (var bar in histogram) {
-		if (histogram.hasOwnProperty(bar)) {
-			languages.push(bar);
-			correct.push(histogram[bar][0]);
-			incorrect.push(histogram[bar][1] - histogram[bar][0]);
-			brag = histogram[bar][0] + '/' + histogram[bar][1] + ' in ' + bar + separator + brag;
-			if (separator !== ', ') separator = separator ? ', ' : ' and ';
+		notBad = new List(),
+		good = new List(),
+		hopeless = new List();
+	for (var lang in histogram) {
+		if (histogram.hasOwnProperty(lang)) {
+			var qns = histogram[lang][1],
+				right = histogram[lang][0];
+			languages.push(lang);
+			correct.push(right);
+			incorrect.push(qns - right);
+			if (qns > 3 && right/qns > 0.3) {
+				if (right/qns > 0.9)
+					good.unshift(right + '/' + qns + ' in ' + lang);
+				else
+					notBad.unshift(right + '/' + qns + ' in ' + lang);
+			}
+			else
+				hopeless.unshift(right + '/' + qns + ' in ' + lang);
 		}
 	}
+	if (notBad.toString())
+		brag = notBad.toString() + ' correct';
+	else if (good.toString())
+		brag = good.toString() + ' correct';
+	else
+		brag = hopeless.toString() + ' correct';
 	gameboard.className = 'game over';
 	drawChart(languages, correct, incorrect);
 	ga('send', 'event', 'Game', 'result', brag, score/question);
