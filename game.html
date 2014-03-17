@@ -54,13 +54,9 @@
 		</div>
 		<div data-role="content" class="gameover">
 			<h3 id="results">Game over</h3>
-			<p>
-				<a rel="nofollow" href="http://www.facebook.com/share.php?u=http%3A%2F%2Feurekalanguages.me%2F"
-					class="fbshare" onclick="return game.fbShare();" target="_blank">
-					&nbsp;Share on <b>facebook</b>
-					<img src="fb.jpg" width="40" height="40" />
-				</a>
-			</p>
+			<div class="facebook_button" onclick="game.fbShare();">
+				<span class="separator"></span><span class="text">Share on facebook</span>
+			</div>	
 			<button onclick="game.playOn()" class="green">Continue playing</button>
 			<button onclick="window.location.href='./'" class="red">New game</button>
 		</div>

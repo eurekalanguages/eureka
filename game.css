@@ -141,10 +141,49 @@ button.red {
 	height:9em;
 }
 
-.fbshare {
+.facebook_button {
+	width:40%;
+	background-clip:padding-box;
+	background-color:#3A5898;
+	background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAF1QTFRF////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AAAA////z8iKdgAAAB50Uk5TD6dhxfbf0+mcXeKLZPAQ9QoW3eOH17qZAZaqEeEArk8N+gAAAGhJREFUKM/d0EkKgDAMBdA6z/NUE5v7H9MoKC21ILjzr8J/i4QIZUTek9BKPwiJIgukR0cSC7Kzp82Cmds4XUYLeoZOPSzfGNR7aBEHBkSsTVjpSuWC3AWTCSVAwy0AFF/P/REI/rkGO8uPP64AUMwMAAAAAElFTkSuQmCC");
+	background-position:19px center;
+	background-repeat:no-repeat;
+	background-size:24px 24px;
+	-webkit-border-radius:0.3em;
+	-moz-border-radius:0.3em;
+	border-radius:0.3em;
 	color:#fff;
-	text-decoration:none;
-	background-color:#3b5998;
+	cursor:pointer;
+	font-size:0.90em;
+	margin:0.5em auto;
+	padding:0 10px 0 70px;
+	position:relative;
+	-webkit-transition:background-color 0.15s linear 0s;
+	-moz-transition:background-color 0.15s linear 0s;
+	-o-transition:background-color 0.15s linear 0s;
+	transition:background-color 0.15s linear 0s;
+}
+.facebook_button .separator {
+	border-left:1px solid #2F4A84;
+	border-right:1px solid #4163AA;
+	height:100%;
+	left:60px;
+	position:absolute;
+	-webkit-transition:border-color 0.15s linear 0s;
+	-moz-transition:border-color 0.15s linear 0s;
+	-o-transition:border-color 0.15s linear 0s;
+	transition:border-color 0.15s linear 0s;
+}
+.facebook_button .text {
+	display:inline-block;
+	margin:10px 0;
+}
+.facebook_button:hover {
+	background-color:#2F4A84;
+}
+.facebook_button:hover .separator{
+	border-left:1px solid #283F71;
+	border-right:1px solid #3A5898;
 }
 
 .about,
