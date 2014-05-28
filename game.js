@@ -30,13 +30,13 @@ this.stop = function() { clearTimeout(timeout); };
 
 this.speechReady = function(audioTag) {
 	mobprompt.style.opacity = 0;
-	this.stop();
+	game.stop();
 	var i = multiplechoice.length;
 	while (i--) {
 		multiplechoice[i].disabled = false;
 	}
 	timer = 11;
-	this.countdown();
+	game.countdown();
 	audioTag.play();
 	ga('send', 'event', 'Game', 'speaking', '', 0);
 };
@@ -55,7 +55,7 @@ this.countdown = function() {
 };
 
 this.nextQuestion = function() {
-	this.stop();
+	game.stop();
 	if (question == maxquestions) {
 		gameResults();
 		return;
@@ -80,7 +80,7 @@ this.nextQuestion = function() {
 };
 
 this.checkAnswer = function(guess) {
-	this.stop();
+	game.stop();
 	if (qn.answer == guess.innerHTML) {
 		countdownboard.className = guess.className = 'green';
 		histogram[qn.lng][0]++;
@@ -100,7 +100,7 @@ this.checkAnswer = function(guess) {
 this.playOn = function() {
 	maxquestions += 10;
 	ga('send', 'event', 'Game', 'extend', brag, score/question);
-	this.nextQuestion();
+	game.nextQuestion();
 };
 
 this.fbShare = function() {
