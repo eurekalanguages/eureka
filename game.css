@@ -2,15 +2,21 @@ body {
 	text-align:center;
 	font-family:Calibri,sans-serif;
 	color:#000;
-	background-color:#555;
 }
 .game {
 	padding: 0.5em;
 	background-color:#eee;
 }
+.dialogue {
+	font-size:60%;
+	text-align:left;
+}
 @media print, screen and (max-width: 480px) {
 	body {
 		margin:0;
+	}
+	.dialogue {
+		display:none;
 	}
 }
 @media print, screen and (min-width: 36em) {
@@ -186,6 +192,13 @@ button.red {
 	border-right:1px solid #3A5898;
 }
 
+.adsbygoogle {
+	display:inline-block;
+	width:336px;
+	height:280px;
+	margin-top:1em;
+}
+
 .about,
 .about :link,
 .about :visited {
@@ -195,8 +208,4 @@ button.red {
 }
 .about iframe {
 	vertical-align:top;
-}
-.dialogue {
-	font-size:60%;
-	text-align:left;
 }

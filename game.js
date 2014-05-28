@@ -17,7 +17,8 @@ var gameboard = d.getElementById('gameboard'),
 	timer = 10,
 	timeout = null,
 	histogram = [],
-	brag = '';
+	brag = '',
+	ad = null;
 
 if (!Object.keys) Object.prototype.keys = function(o) {
 	var k=[],p;
@@ -228,6 +229,10 @@ function gameResults() {
 	gameboard.className = 'game over';
 	drawChart(languages, correct, incorrect);
 	ga('send', 'event', 'Game', 'result', brag, score/question);
+	if (!ad) {
+		ad = window.adsbygoogle || [];
+		ad.push({});
+	}
 }
 
 function drawChart(categs, lowerSeries, upperSeries) {
