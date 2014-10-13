@@ -278,4 +278,4 @@ ga('send', 'event', 'Game', 'start', '', 0);
 ga('set', 'metric1', '0');
 };
 
-game = new GameController(document, data, 'http://eurekalanguages.me/', baseDirectory, maxquestions, ga);
+game = new GameController(document, data, 'http://www.eurekalanguages.com/', baseDirectory, maxquestions, ga);
