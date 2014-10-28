@@ -1,13 +1,13 @@
 CACHE MANIFEST
-#v1.31
+#v1.32
 
 CACHE:
 index.html
 game.css
-//www.google-analytics.com/analytics.js
 game.html
 game.js
 questions.js
+//www.google-analytics.com/analytics.js
 //code.highcharts.com/adapters/standalone-framework.js
 //code.highcharts.com/highcharts.js
 //connect.facebook.net/en_US/all.js
