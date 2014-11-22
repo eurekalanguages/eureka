@@ -40,7 +40,7 @@
 			<p id="pressplay">Press &#9654; to start:</p>
 			<div>
 				<audio id="player" src="null.m4a" type="audio/mp4"
-					oncanplaythrough="game.speechReady(this);" controls></audio>
+					onplay="game.speechReady(this);" autoplay controls></audio>
 			</div>
 			<div class="midpanel" align="right">
 				<span id="error"></span>

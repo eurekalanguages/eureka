@@ -31,10 +31,7 @@ this.stop = function() { clearTimeout(timeout); };
 this.speechReady = function(audioTag) {
 	mobprompt.style.opacity = 0;
 	game.stop();
-	var i = multiplechoice.length;
-	while (i--) {
-		multiplechoice[i].disabled = false;
-	}
+	disableInput(false);
 	timer = 11;
 	game.countdown();
 	audioTag.play();
@@ -122,6 +119,13 @@ this.fbShare = function() {
 	);
 };
 
+function disableInput(disable) {
+	var i = multiplechoice.length;
+	while (i--) {
+		multiplechoice[i].disabled = disable;
+	}
+}
+
 
 function pickRandomProperty(obj) {
 	var keys = [];
@@ -178,10 +182,7 @@ function newQuestion(data) {
 }
 
 function displayResult(message){
-	var i = multiplechoice.length;
-	while (i--) {
-		multiplechoice[i].disabled = true;
-	}
+	disableInput(true);
 	errorboard.innerHTML = message;
 	errorboard.style.opacity = 1;
 }
@@ -274,6 +275,7 @@ function drawChart(categs, lowerSeries, upperSeries) {
 	});
 }
 
+disableInput(true);
 ga('send', 'event', 'Game', 'start', '', 0);
 ga('set', 'metric1', '0');
 };
