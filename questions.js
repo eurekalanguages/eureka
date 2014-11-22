@@ -1,4 +1,4 @@
-var maxquestions = 20;
+var maxquestions = 50;
 var baseDirectory = './voices';
 
 var data = {
