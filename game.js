@@ -211,7 +211,7 @@ function GameController(d, data, url, baseDirectory, maxquestions, ga) {
 				languages.push(lang);
 				correct.push(right);
 				incorrect.push(qns - right);
-				if (qns > 3 && right/qns > 0.3) {
+				if (qns > 3 && right/qns > 0.5) {
 					if (right/qns > 0.9)
 						good.unshift(right + '/' + qns + ' in ' + lang);
 					else
@@ -283,6 +283,6 @@ function GameController(d, data, url, baseDirectory, maxquestions, ga) {
 		playOn: playOn,
 		fbShare: fbShare
 	};
-};
+}
 
 game = new GameController(document, data, 'http://www.eurekalanguages.com/', baseDirectory, maxquestions, ga);
