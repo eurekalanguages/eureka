@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#v1.33
+#v1.34
 
 CACHE:
 index.html
@@ -13,6 +13,6 @@ questions.js
 //connect.facebook.net/en_US/all.js
 //pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
 
-# The voice files, mediaelement.js and analytics require the user to be online
+# The voice files and analytics require the user to be online
 NETWORK:
 *
