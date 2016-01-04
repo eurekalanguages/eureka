@@ -27,6 +27,20 @@ function GameController(d, data, url, baseDirectory, maxquestions, ga) {
 		return k;
 	};
 
+	function pickRandomProperty(obj) {
+		var keys = Object.keys(obj);
+		return keys[ keys.length * Math.random() << 0 ];
+	}
+
+	function shuffle(o) {
+		for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	}
+
+	function convertToSlug(text) {
+		return text.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');
+	}
+
 	function stop() { clearTimeout(timeout); }
 
 	function speechReady(audioTag) {
@@ -123,25 +137,6 @@ function GameController(d, data, url, baseDirectory, maxquestions, ga) {
 		while (i--) {
 			multiplechoice[i].disabled = disable;
 		}
-	}
-
-	function pickRandomProperty(obj) {
-		var keys = [];
-		for (var prop in obj) {
-			if (obj.hasOwnProperty(prop)) {
-				keys.push(prop);
-			}
-		}
-		return keys[ keys.length * Math.random() << 0 ];
-	}
-
-	function shuffle(o) {
-		for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-		return o;
-	}
-
-	function convertToSlug(text) {
-		return text.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');
 	}
 
 	function pickAnswerAndChoices(questions, category, numberOfChoices) {
