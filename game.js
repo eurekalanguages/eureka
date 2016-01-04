@@ -53,7 +53,6 @@ function GameController(d, data, url, baseDirectory, maxquestions, ga) {
 	}
 
 	function nextQuestion() {
-		stop();
 		if (question == maxquestions) {
 			gameResults();
 			return;
