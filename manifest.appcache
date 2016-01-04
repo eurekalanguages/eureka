@@ -7,9 +7,9 @@ game.css
 game.html
 game.js
 questions.js
+highcharts/standalone-framework.js
+highcharts/highcharts.js
 //www.google-analytics.com/analytics.js
-//code.highcharts.com/adapters/standalone-framework.js
-//code.highcharts.com/highcharts.js
 //connect.facebook.net/en_US/all.js
 //pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
 
